@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (email && pwd) {
         localStorage.setItem('eduTrackUser', JSON.stringify(demoUser));
         // ✅ Redirect to dashboard (GitHub Pages-friendly)
-        window.location.href = '/WIL/admin/dashboard.html';
+        window.location.href = '/admin/dashboard.html';
       }
     });
   }
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
     logoutBtn.addEventListener('click', () => {
       localStorage.removeItem('eduTrackUser');
       // ✅ Redirect to login page (GitHub Pages-friendly)
-      window.location.href = '/WIL/public/login.html';
+      window.location.href = '/public/login.html';
     });
   }
 
@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
   } else {
     if (!location.href.includes('login.html') && !location.href.includes('register.html')) {
       // ✅ Redirect to login page (GitHub Pages-friendly)
-      window.location.href = '/WIL/public/login.html';
+      window.location.href = '/public/login.html';
     }
   }
 });
