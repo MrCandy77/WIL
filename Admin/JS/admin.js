@@ -8,7 +8,6 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  // Display user info
   const userDisplay = document.getElementById("userDisplay");
   const welcomeMsg = document.getElementById("welcomeMessage");
 
@@ -20,7 +19,6 @@ document.addEventListener("DOMContentLoaded", () => {
     `;
   }
 
-  // Logout
   const logoutBtn = document.getElementById("logoutBtn");
   if (logoutBtn) {
     logoutBtn.addEventListener("click", () => {

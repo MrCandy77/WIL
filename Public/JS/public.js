@@ -25,7 +25,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // === LOGIN ===
   const loginForm = document.getElementById("loginForm");
   if (loginForm) {
     loginForm.addEventListener("submit", (e) => {
@@ -42,7 +41,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       if (storedUser.email === email && storedUser.password === password) {
-        // Create session user
         const sessionUser = {
           fullName: storedUser.fullName,
           email: storedUser.email,
@@ -52,7 +50,6 @@ document.addEventListener("DOMContentLoaded", () => {
         localStorage.setItem("isLoggedIn", "true");
 
         alert(`Welcome, ${storedUser.fullName}!`);
-        // CORRECT RELATIVE PATH: from Public/login.html → Admin/dashboard.html
         window.location.href = "../Admin/dashboard.html";
       } else {
         alert("Invalid email or password.");
