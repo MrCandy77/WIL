@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Resources | EduTrack</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="CSS/admin.css">
+  <style>
+    body, .card, .table { color: #f8f9fa !important; }
+    .card-title { font-size: 1.15rem; font-weight: 600; }
+    .card-text { font-size: 0.95rem; line-height: 1.6; }
+    .list-unstyled a { color: #DCD7C9; font-size: 1rem; }
+    .list-unstyled a:hover { color: #fff; text-decoration: underline; }
+
+    .card-body { padding: 1.5rem; }
+    .card-header { font-weight: 600; font-size: 1.1rem; }
+
+    #resourceSearch {
+      background: #222831;
+      border: 1px solid #948979;
+      color: #f8f9fa;
+      font-size: 1rem;
+    }
+    #resourceSearch::placeholder { color: #bbb; }
+    #resourceSearch:focus { border-color: #DCD7C9; box-shadow: 0 0 0 0.2rem rgba(220, 215, 201, 0.25); }
+
+    .btn-accent {
+      background: #948979; color: #DCD7C9; font-weight: 500;
+      border-radius: 8px; padding: 0.5rem 1rem; font-size: 0.95rem;
+    }
+    .btn-accent:hover { background: #DCD7C9; color: #222831; }
+
+    .resource-card { transition: transform .2s, box-shadow .2s; }
+    .resource-card:hover { transform: translateY(-4px); box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
+
+    .table { font-size: 0.95rem; }
+    .table th { font-weight: 600; color: #DCD7C9; }
+    .table td { vertical-align: middle; }
+
+    .video-title { font-size: 1rem; font-weight: 600; margin-top: 0.5rem; }
+    .video-author { font-size: 0.85rem; color: #bbb; }
+    .sidebar{width: 550px;}
+  </style>
+</head>
+<body>
+
+<div class="d-flex" id="wrapper">
+
+  <!-- Sidebar -->
+  <nav class="sidebar bg-dark" id="sidebar">
+    <div class="sidebar-header text-center py-4">
+      <img src="Images/logo.jpg" alt="Logo" class="logo mb-2">
+      <h4>EduTrack</h4>
+    </div>
+    <ul class="nav flex-column mt-4 flex-grow-1">
+      <li class="nav-item"><a href="dashboard.html" class="nav-link"><i class="bi bi-speedometer2 me-2"></i>Dashboard</a></li>
+      <li class="nav-item"><a href="resources.html" class="nav-link active"><i class="bi bi-journal-bookmark me-2"></i>Resources</a></li>
+      <li class="nav-item"><a href="downloads.html" class="nav-link"><i class="bi bi-download me-2"></i>Downloads</a></li>
+      <li class="nav-item"><a href="uploads.html" class="nav-link"><i class="bi bi-upload me-2"></i>Uploads</a></li>
+      <li class="nav-item"><a href="info.html" class="nav-link"><i class="bi bi-person-vcard me-2"></i>Profile Info</a></li>
+      <li class="nav-item mb-3"><a href="../public/contact.html" class="nav-link"><i class="bi bi-envelope me-2"></i>Contact Us</a></li>
+    </ul>
+
+    <div class="logout-section text-center mb-4">
+      <button id="logoutBtn" class="btn btn-accent w-75"><i class="bi bi-box-arrow-right me-1"></i>Logout</button>
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <div id="page-content" class="flex-grow-1">
+    <nav class="navbar navbar-expand-lg navbar-dark topbar">
+      <div class="container-fluid d-flex justify-content-between align-items-center">
+        <div class="d-flex align-items-center">
+          <button class="btn btn-outline-light d-lg-none me-2" id="menu-toggle">Menu</button>
+          <h4 class="m-0">Resources</h4>
+        </div>
+        <div class="d-flex align-items-center">
+          <a href="profile.html" class="text-decoration-none text-light me-2">
+            <i class="bi bi-person-circle fs-4"></i>
+          </a>
+          <span class="user-name text-light" id="userDisplay"></span>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid mt-4">
+
+      <!-- Search Bar -->
+      <div class="row mb-4">
+        <div class="col-12 col-md-6 mx-auto">
+          <div class="input-group">
+            <input type="text" id="resourceSearch" class="form-control" placeholder="Search notes, videos, or files…">
+            <button class="btn btn-accent" type="button"><i class="bi bi-search"></i></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Links + Downloadable Materials -->
+      <div class="row g-4 mb-5">
+        <div class="col-md-4">
+          <div class="card stat-card shadow-sm resource-card bg-dark">
+            <div class="card-body text-center">
+              <h5 class="card-title"><i class="bi bi-link-45deg me-2"></i>Quick Links</h5>
+              <hr class="border-secondary">
+              <ul class="list-unstyled text-start mt-3">
+                <li class="mb-2"><a href="https://learn.microsoft.com/en-us/azure/" target="_blank"><i class="bi bi-microsoft me-2"></i>Microsoft Learn</a></li>
+                <li class="mb-2"><a href="https://www.w3schools.com/" target="_blank"><i class="bi bi-code-slash me-2"></i>W3Schools</a></li>
+                <li class="mb-2"><a href="https://learning.oreilly.com/home/" target="_blank"><i class="bi bi-globe me-2"></i>Orielly</a></li>
+                <li class="mb-2"><a href="https://www.freecodecamp.org/" target="_blank"><i class="bi bi-lightbulb me-2"></i>freeCodeCamp</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-8">
+          <div class="card stat-card shadow-sm resource-card bg-dark">
+            <div class="card-body">
+              <h5 class="text-center mb-3"><i class="bi bi-file-earmark-arrow-down me-2"></i>Downloadable Materials</h5>
+              <div class="table-responsive">
+                <table class="table table-dark table-striped align-middle">
+                  <thead>
+                    <tr>
+                      <th>File Name</th>
+                      <th>Category</th>
+                      <th>Size</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>HTML Basics.pdf</td>
+                      <td>Web Development</td>
+                      <td>2.3 MB</td>
+                      <td><a href="Resources/Bootcamp HTML5CSS3JS 1.pptx" download class="btn btn-sm btn-accent"><i class="bi bi-download"></i></a></td>
+                    </tr>
+                    <tr>
+                      <td>Azure Cloud Fundamentals.pptx</td>
+                      <td>Cloud Computing</td>
+                      <td>4.1 MB</td>
+                      <td><a href="Resources/Az-900-Test-1-for-Class (1).pdf" download class="btn btn-sm btn-accent"><i class="bi bi-download"></i></a></td>
+                    </tr>
+                    <tr>
+                      <td>Database Design Notes.docx</td>
+                      <td>Data Management</td>
+                      <td>1.8 MB</td>
+                      <td><a href="Resources/PHP, MySQL, JavaScript & HTML5.pdf" download class="btn btn-sm btn-accent"><i class="bi bi-download"></i></a></td>
+                    </tr>
+                    <tr>
+                      <td>JavaScript Projects.zip</td>
+                      <td>Programming</td>
+                      <td>5.6 MB</td>
+                      <td><a href="Resources/JavaScript Planning-Question (1).pdf" download class="btn btn-sm btn-accent"><i class="bi bi-download"></i></a></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lecture Notes -->
+      <div class="row g-4 mb-5">
+        <div class="col-12">
+          <div class="card stat-card shadow-sm resource-card bg-dark">
+            <div class="card-header bg-secondary text-light d-flex align-items-center">
+              <i class="bi bi-journal-text me-2"></i>
+              <h5 class="mb-0">Lecture Notes</h5>
+            </div>
+            <div class="card-body">
+              <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                
+                <div class="col">
+                  <div class="card h-100 bg-dark text-light border-0">
+                    <div class="card-body d-flex flex-column">
+                      <h6 class="card-title"><i class="bi bi-file-earmark-pdf text-danger me-2"></i>Week 1 – HTML & CSS</h6>
+                      <p class="card-text">Introduction to markup, selectors, box model, and layout basics.</p>
+                      <a href="Resources/HTML&CSS-Project-scenarios.pdf" download class="mt-auto btn btn-sm btn-accent"><i class="bi bi-download"></i> Download PDF</a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col">
+                  <div class="card h-100 bg-dark text-light border-0">
+                    <div class="card-body d-flex flex-column">
+                      <h6 class="card-title"><i class="bi bi-file-earmark-pdf text-danger me-2"></i>Week 2 – JavaScript Basics</h6>
+                      <p class="card-text">Variables, functions, loops, and DOM manipulation fundamentals.</p>
+                      <a href="Resources/JavaScript Planning-Question (1).pdf" download class="mt-auto btn btn-sm btn-accent"><i class="bi bi-download"></i> Download PDF</a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col">
+                  <div class="card h-100 bg-dark text-light border-0">
+                    <div class="card-body d-flex flex-column">
+                      <h6 class="card-title"><i class="bi bi-file-earmark-pdf text-danger me-2"></i>Week 3 – HTML & CSS Intermediate</h6>
+                      <p class="card-text">Flexbox, CSS Grid, media queries, and mobile-first approach.</p>
+                      <a href="Resources/Bootcamp HTML5CSS3JS 1.pptx" download class="mt-auto btn btn-sm btn-accent"><i class="bi bi-download"></i> Download PDF</a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col">
+                  <div class="card h-100 bg-dark text-light border-0">
+                    <div class="card-body d-flex flex-column">
+                      <h6 class="card-title"><i class="bi bi-file-earmark-pdf text-danger me-2"></i>Week 4 – Azure Fundamentals</h6>
+                      <p class="card-text">Virtual machines, storage, networking, and Azure services overview.</p>
+                      <a href="Resources/Az-900-Test-1-for-Class (1).pdf" download class="mt-auto btn btn-sm btn-accent"><i class="bi bi-download"></i> Download PDF</a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col">
+                  <div class="card h-100 bg-dark text-light border-0">
+                    <div class="card-body d-flex flex-column">
+                      <h6 class="card-title"><i class="bi bi-file-earmark-pdf text-danger me-2"></i>Week 5 – SQL & Databases</h6>
+                      <p class="card-text">Normalization, joins, indexing, and writing efficient queries.</p>
+                      <a href="Resources/PHP, MySQL, JavaScript & HTML5.pdf" download class="mt-auto btn btn-sm btn-accent"><i class="bi bi-download"></i> Download PDF</a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col">
+                  <div class="card h-100 bg-dark text-light border-0">
+                    <div class="card-body d-flex flex-column">
+                      <h6 class="card-title"><i class="bi bi-file-earmark-pdf text-danger me-2"></i>Week 6 – Python</h6>
+                      <p class="card-text">Python Fundamentals and intro to basic programming.</p>
+                      <a href="Resources/Python one-student-Test.pdf" download class="mt-auto btn btn-sm btn-accent"><i class="bi bi-download"></i> Download PDF</a>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Video Tutorials -->
+      <div class="row g-4">
+        <div class="col-12">
+          <div class="card stat-card shadow-sm resource-card bg-dark">
+            <div class="card-header bg-secondary text-light d-flex align-items-center">
+              <i class="bi bi-play-btn-fill me-2"></i>
+              <h5 class="mb-0">Video Tutorials</h5>
+            </div>
+            <div class="card-body">
+              <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                <div class="col">
+                  <div class="ratio ratio-16x9 mb-3">
+                    <iframe src="https://www.youtube.com/embed/G3e-cpL7ofc" title="HTML Crash Course" allowFullScreen></iframe>
+                  </div>
+                  <div>
+                    <h6 class="video-title">HTML Crash Course (30 min)</h6>
+                    <p class="video-author">By Traversy Media</p>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="ratio ratio-16x9 mb-3">
+                    <iframe src="https://www.youtube.com/embed/UB1O30fR-EE" title="JavaScript DOM" allowFullScreen></iframe>
+                  </div>
+                  <div>
+                    <h6 class="video-title">JavaScript DOM Manipulation</h6>
+                    <p class="video-author">By freeCodeCamp</p>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="ratio ratio-16x9 mb-3">
+                    <iframe src="https://www.youtube.com/embed/1PnVor36_40" title="Azure Basics" allowFullScreen></iframe>
+                  </div>
+                  <div>
+                    <h6 class="video-title">Azure Fundamentals in 1 Hour</h6>
+                    <p class="video-author">By Microsoft Learn</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script src="JS/admin.js"></script>
+<script src="../public/JS/auth.js"></script>
+
+<script>
+  document.getElementById('resourceSearch').addEventListener('input', function(e) {
+    const term = e.target.value.toLowerCase().trim();
+    document.querySelectorAll('.resource-card .card').forEach(card => {
+      const text = card.textContent.toLowerCase();
+      card.closest('.col').style.display = term === '' || text.includes(term) ? '' : 'none';
+    });
+  });
+</script>
+</body>
+</html>

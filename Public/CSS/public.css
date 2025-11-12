@@ -1,0 +1,320 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+  color: #DCD7C9;
+  height: 100%;
+  background-color: #222831;
+}
+
+a {
+  color: #948979;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* HERO SECTION */
+.hero-section {
+  height: 100vh;
+  width: 100%;
+  position: relative;
+  background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)),
+              url('https://cdn.pixabay.com/photo/2019/05/21/09/20/city-4218673_1280.jpg') center/cover no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #DCD7C9;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+  padding: 0 2rem;
+  overflow: hidden;
+}
+
+.hero-text {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-section h1 {
+  font-size: 5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.hero-section p {
+  font-size: 1.3rem;
+  margin-bottom: 2rem;
+  max-width: 700px;
+}
+
+.btn-get-started {
+  background-color: #948979;
+  color: #DCD7C9;
+  border: none;
+  border-radius: 25px;
+  padding: 0.7rem 2rem;
+  font-weight: 500;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.btn-get-started:hover {
+  background-color: #DCD7C9;
+  color: #222831;
+}
+
+/*FLOATING HEADER*/
+.floating-header {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 3rem;
+}
+
+.floating-header .logo {
+  height: 60px;
+  max-height: 60px;
+  width: auto;
+  margin-right: 15px;
+  border-radius: 10%;
+  object-fit: contain;
+}
+
+.floating-header .title {
+  color: #DCD7C9;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.floating-header .header-buttons .btn {
+  margin-left: 0.5rem;
+  border-radius: 25px;
+  font-weight: 500;
+  padding: 0.5rem 1.5rem;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+}
+
+.btn-login {
+  background-color: #948979;
+  color: #222831;
+  border: none;
+}
+
+.btn-login:hover {
+  background-color: #DCD7C9;
+  color: #222831;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.btn-register {
+  background-color: transparent;
+  color: #948979;
+  border: 2px solid #948979;
+}
+
+.btn-register:hover {
+  background-color: #948979;
+  color: #222831;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.btn-contact {
+  background-color: transparent;
+  color: #DCD7C9;
+  border: 2px solid #948979;
+  border-radius: 25px;
+}
+
+.btn-contact:hover {
+  background-color: #948979;
+  color: #DCD7C9;
+}
+
+/*LOGIN/REGISTER/CONTACT FORM*/
+body.login-page, body.register-page, body.contact-page {
+  overflow: hidden;
+}
+
+.login-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+  padding: 1rem;
+}
+
+.login-box {
+  background-color: rgba(57, 62, 70, 0.9);
+  padding: 2.5rem;
+  border-radius: 20px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+}
+
+.login-box h2 {
+  color: #DCD7C9;
+  margin-bottom: 1.5rem;
+}
+
+.login-box .logo {
+  height: 60px;
+  width: auto;
+  margin-bottom: 1rem;
+  border-radius: 10%;
+}
+
+.form-control {
+  background-color: #222831;
+  border: none;
+  border-bottom: 2px solid #948979;
+  border-radius: 0;
+  color: #DCD7C9;
+  margin-top: 0.3rem;
+  transition: all 0.3s ease;
+}
+
+.form-control::placeholder {
+  color: #bcb7aa;
+}
+
+.form-control:focus {
+  box-shadow: none;
+  border-color: #DCD7C9;
+}
+
+.btn-login-page {
+  background-color: #948979;
+  color: #DCD7C9;
+  border: none;
+  border-radius: 25px;
+  padding: 0.6rem 2rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.btn-login-page:hover {
+  background-color: #DCD7C9;
+  color: #222831;
+}
+
+.btn-back-fixed {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 100;
+  background-color: #948979;
+  color: #DCD7C9;
+  border: none;
+  border-radius: 25px;
+  padding: 0.7rem 1.5rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.btn-back-fixed:hover {
+  background-color: #DCD7C9;
+  color: #222831;
+}
+
+.register-link {
+  margin-top: 1rem;
+  color: #DCD7C9;
+}
+
+.register-link a {
+  color: #948979;
+}
+
+.register-link a:hover {
+  text-decoration: underline;
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.form-row .form-group {
+  flex: 1 1 48%;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 576px) {
+  .form-row .form-group {
+    flex: 1 1 100%;
+  }
+}
+
+.split-container {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+}
+
+.left-panel {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #393E46;
+  padding: 2rem;
+}
+
+.right-panel {
+  flex: 1;
+  background-image: url('https://cdn.pixabay.com/photo/2020/09/29/10/42/library-5612441_1280.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+@media (max-width: 800px) {
+  .split-container {
+    flex-direction: column;
+  }
+  .right-panel {
+    height: 40vh;
+  }
+}
+
+/* CONTACT PAGE SPLIT*/
+.contact-container {
+  display: flex;
+  height: 100vh;
+}
+
+.contact-left {
+  flex: 1;
+  background-image: url('https://cdn.pixabay.com/photo/2020/07/08/04/12/work-5382501_1280.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.contact-right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
