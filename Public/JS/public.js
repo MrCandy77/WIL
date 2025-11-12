@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (storedUser.email === email && storedUser.password === password) {
         alert(`Welcome back, ${storedUser.fullName}!`);
         localStorage.setItem("isLoggedIn", "true");
-        window.location.href = "Admin/dashboard.html";
+        window.location.href = "dashboard.html";
       } else {
         alert("Invalid email or password.");
       }
