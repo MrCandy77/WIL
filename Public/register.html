@@ -7,143 +7,20 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="CSS/public.css">
   <style>
-    body.register-page {
-      overflow: hidden;
-      background: url('https://cdn.pixabay.com/photo/2020/11/19/08/03/college-5757815_1280.jpg') center/cover no-repeat;
-      position: relative;
-      height: 100vh;
-      color: #DCD7C9;
-    }
-
-    body.register-page::after {
-      content: "";
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0,0,0,0.5);
-      z-index: 1;
-    }
-
-    .btn-back-fixed {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      z-index: 100;
-      background-color: #948979;
-      color: #DCD7C9;
-      border: none;
-      border-radius: 25px;
-      padding: 0.7rem 1.5rem;
-      font-weight: 500;
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
-
-    .btn-back-fixed:hover {
-      background-color: #DCD7C9;
-      color: #222831;
-    }
-
-    .login-container {
-      position: relative;
-      z-index: 2;
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 1rem;
-    }
-
-    .login-box {
-      background-color: rgba(57, 62, 70, 0.9);
-      padding: 2.5rem;
-      border-radius: 20px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.4);
-      max-width: 600px;
-      width: 100%;
-      text-align: center;
-    }
-
-    .login-box h2 {
-      color: #DCD7C9;
-      margin-bottom: 1.5rem;
-    }
-
-    .form-control {
-      background-color: #222831;
-      border: none;
-      border-bottom: 2px solid #948979;
-      border-radius: 0;
-      color: #DCD7C9;
-      margin-top: 0.3rem;
-    }
-
-    .form-control::placeholder {
-      color: #bcb7aa;
-    }
-
-    .form-control:focus {
-      box-shadow: none;
-      border-color: #DCD7C9;
-    }
-
-    .btn-login-page {
-      background-color: #948979;
-      color: #DCD7C9;
-      border: none;
-      border-radius: 25px;
-      padding: 0.6rem 2rem;
-      font-weight: 500;
-      transition: all 0.3s ease;
-      width: 100%;
-    }
-
-    .btn-login-page:hover {
-      background-color: #DCD7C9;
-      color: #222831;
-    }
-
-    .register-link {
-      margin-top: 1rem;
-      color: #DCD7C9;
-    }
-
-    .register-link a {
-      color: #948979;
-    }
-
-    .register-link a:hover {
-      text-decoration: underline;
-    }
-
-    .form-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-
-    .form-row .form-group {
-      flex: 1 1 48%;
-      display: flex;
-      flex-direction: column;
-    }
-
-    @media (max-width: 576px) {
-      .form-row .form-group {
-        flex: 1 1 100%;
-      }
-    }
+    /* … (your existing styles) … */
   </style>
 </head>
 <body class="register-page">
 
-  <a href="../index.html" class="btn-back-fixed">← Back</a>
+  <a href="../index.html" class="btn-back-fixed">Back</a>
 
   <div class="login-container">
     <div class="login-box">
       <h2>Create Your Account</h2>
-      <form>
+
+      <!-- ADD ID TO FORM -->
+      <form id="registerForm">
+
         <div class="mb-3 text-start">
           <label for="fullname" class="form-label">Full Name</label>
           <input type="text" class="form-control" id="fullname" placeholder="Enter your full name" required>
@@ -183,6 +60,7 @@
 
         <button type="submit" class="btn-login-page">Register</button>
       </form>
+
       <div class="register-link">
         Already have an account? <a href="login.html">Login here</a>
       </div>

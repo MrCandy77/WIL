@@ -1,8 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const registerForm = document.querySelector("form");
-  const loginForm = document.querySelector("form");
-
-  if (window.location.pathname.includes("register.html") && registerForm) {
+  // === REGISTRATION ===
+  const registerForm = document.getElementById("registerForm");
+  if (registerForm) {
     registerForm.addEventListener("submit", (e) => {
       e.preventDefault();
 
@@ -20,31 +19,41 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       const user = { fullName, username, mobile, email, campus, password };
-
-      localStorage.setItem("user", JSON.stringify(user));
-      alert("Registration successful! You can now log in.");
+      localStorage.setItem("registeredUser", JSON.stringify(user));
+      alert("Registration successful! Please log in.");
       window.location.href = "login.html";
     });
   }
 
-  if (window.location.pathname.includes("login.html") && loginForm) {
+  // === LOGIN ===
+  const loginForm = document.getElementById("loginForm");
+  if (loginForm) {
     loginForm.addEventListener("submit", (e) => {
       e.preventDefault();
 
       const email = document.getElementById("email").value.trim();
       const password = document.getElementById("password").value;
 
-      const storedUser = JSON.parse(localStorage.getItem("user"));
+      const storedUser = JSON.parse(localStorage.getItem("registeredUser"));
 
       if (!storedUser) {
-        alert("No registered user found. Please register first.");
+        alert("No user found. Please register first.");
         return;
       }
 
       if (storedUser.email === email && storedUser.password === password) {
-        alert(`Welcome back, ${storedUser.fullName}!`);
+        // Create session user
+        const sessionUser = {
+          fullName: storedUser.fullName,
+          email: storedUser.email,
+          username: storedUser.username
+        };
+        localStorage.setItem("currentUser", JSON.stringify(sessionUser));
         localStorage.setItem("isLoggedIn", "true");
-        window.location.href = "login.html";
+
+        alert(`Welcome, ${storedUser.fullName}!`);
+        // CORRECT RELATIVE PATH: from Public/login.html → Admin/dashboard.html
+        window.location.href = "../Admin/dashboard.html";
       } else {
         alert("Invalid email or password.");
       }

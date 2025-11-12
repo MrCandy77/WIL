@@ -1,34 +1,32 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const isLoggedIn = localStorage.getItem("isLoggedIn");
-  if (!isLoggedIn) {
-    alert("Please log in first.");
-    window.location.href = "../public/login.html";
+  const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+  if (!isLoggedIn || !currentUser) {
+    alert("Please log in to access the dashboard.");
+    window.location.href = "../Public/login.html";
     return;
   }
 
-  const user = JSON.parse(localStorage.getItem("user"));
-  if (user) {
-    const nameParts = user.fullName.trim().split(" ");
-    const formattedName = nameParts
-      .map((n) => n.charAt(0).toUpperCase() + n.slice(1).toLowerCase())
-      .join(" ");
-    document.getElementById("userDisplay").textContent = formattedName;
+  // Display user info
+  const userDisplay = document.getElementById("userDisplay");
+  const welcomeMsg = document.getElementById("welcomeMessage");
+
+  if (userDisplay) userDisplay.textContent = currentUser.fullName;
+  if (welcomeMsg) {
+    welcomeMsg.innerHTML = `
+      Welcome back, <strong>${currentUser.fullName}</strong><br>
+      <small class="text-muted">${currentUser.email}</small>
+    `;
   }
 
-  const menuToggle = document.getElementById("menu-toggle");
-  const sidebar = document.getElementById("sidebar");
-  if (menuToggle) {
-    menuToggle.addEventListener("click", () => {
-      sidebar.classList.toggle("active");
-    });
-  }
-
-
+  // Logout
   const logoutBtn = document.getElementById("logoutBtn");
   if (logoutBtn) {
     logoutBtn.addEventListener("click", () => {
       localStorage.removeItem("isLoggedIn");
-      window.location.href = "../public/login.html";
+      localStorage.removeItem("currentUser");
+      window.location.href = "../Public/login.html";
     });
   }
 });
