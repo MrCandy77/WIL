@@ -4,218 +4,61 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Uploads | EduTrack</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
-  <link rel="stylesheet" href="CSS/admin.css">
-  <style>
-    .upload-card {
-      background-color: #2b313a;
-      border: none;
-      border-radius: 12px;
-      color: var(--text);
-    }
-
-    .drag-area {
-      border: 2px dashed var(--accent);
-      border-radius: 12px;
-      padding: 2rem;
-      text-align: center;
-      cursor: pointer;
-      transition: background-color 0.3s ease, border-color 0.3s ease;
-    }
-
-    .drag-area.dragover {
-      background-color: #323841;
-      border-color: var(--text);
-    }
-
-    .drag-area i {
-      font-size: 3rem;
-      color: var(--accent);
-    }
-
-    .drag-area p {
-      margin-top: 1rem;
-      font-size: 1rem;
-      color: var(--text);
-    }
-
-    .guidelines-card {
-      background-color: #2b313a;
-      border: none;
-      border-radius: 12px;
-      color: var(--text);
-    }
-
-    .guidelines-card ul li {
-      margin-bottom: 0.5rem;
-    }
-
-    .form-label {
-      color: var(--accent);
-      font-weight: 500;
-    }
-
-    .form-control, .form-select {
-      background-color: #2c323a;
-      border: 1px solid #393E46;
-      color: var(--text);
-    }
-
-    .form-control:focus, .form-select:focus {
-      border-color: var(--accent);
-      box-shadow: none;
-    }
-  </style>
+  <link href="CSS/admin.css" rel="stylesheet">
 </head>
 <body>
+  <div id="wrapper">
+    <nav class="sidebar bg-dark" id="sidebar">
+      <div class="sidebar-header text-center py-4">
+        <img src="Images/logo.jpg" alt="Logo" class="logo mb-2">
+        <h4 class="text-light">EduTrack</h4>
+      </div>
 
-<div class="d-flex" id="wrapper">
-  <nav class="sidebar bg-dark" id="sidebar">
-    <div class="sidebar-header text-center py-4">
-      <img src="Images/logo.jpg" alt="Logo" class="logo mb-2">
-      <h4>EduTrack</h4>
-    </div>
-    <ul class="nav flex-column mt-4">
-      <li class="nav-item"><a href="dashboard.html" class="nav-link"><i class="bi bi-speedometer2 me-2"></i>Dashboard</a></li>
-      <li class="nav-item"><a href="resources.html" class="nav-link"><i class="bi bi-journal-bookmark me-2"></i>Resources</a></li>
-      <li class="nav-item"><a href="download.html" class="nav-link"><i class="bi bi-download me-2"></i>Downloads</a></li>
-      <li class="nav-item"><a href="uploads.html" class="nav-link active"><i class="bi bi-upload me-2"></i>Uploads</a></li>
-      <li class="nav-item"><a href="info.html" class="nav-link"><i class="bi bi-person-vcard me-2"></i>Profile Info</a></li>
-      <li class="nav-item"><a href="../public/contact.html" class="nav-link"><i class="bi bi-envelope me-2"></i>Contact Us</a></li>
-    </ul>
-    <div class="logout-section text-center mt-auto mb-3">
-      <button id="logoutBtn" class="btn btn-outline-light w-75">Logout</button>
-    </div>
-  </nav>
+      <ul class="nav flex-column mt-4">
+        <li class="nav-item"><a href="dashboard.html" class="nav-link"><i class="bi bi-speedometer2 me-2"></i>Dashboard</a></li>
+        <li class="nav-item"><a href="resources.html" class="nav-link"><i class="bi bi-journal-bookmark me-2"></i>Resources</a></li>
+        <li class="nav-item"><a href="download.html" class="nav-link"><i class="bi bi-download me-2"></i>Downloads</a></li>
+        <li class="nav-item"><a href="uploads.html" class="nav-link active"><i class="bi bi-upload me-2"></i>Uploads</a></li>
+        <li class="nav-item"><a href="info.html" class="nav-link"><i class="bi bi-person-vcard me-2"></i>Profile Info</a></li>
+        <li class="nav-item"><a href="../public/contact.html" class="nav-link"><i class="bi bi-envelope me-2"></i>Contact Us</a></li>
+      </ul>
 
-  <div id="page-content" class="flex-grow-1">
-    <nav class="navbar navbar-expand-lg navbar-dark topbar">
-      <div class="container-fluid d-flex justify-content-between align-items-center">
-        <div class="d-flex align-items-center">
-          <button class="btn btn-outline-light d-lg-none me-2" id="menu-toggle">☰</button>
-          <h4 class="m-0" id="welcomeMessage">Upload Assignments</h4>
-        </div>
-        <div class="d-flex align-items-center">
-          <a href="profile.html" class="text-decoration-none text-light me-2">
-            <i class="bi bi-person-circle fs-4"></i>
-          </a>
-          <span class="user-name text-light" id="userDisplay"></span>
-        </div>
+      <div class="logout-section text-center mt-auto mb-3">
+        <button id="logoutBtn" class="btn btn-outline-light w-75">Logout</button>
       </div>
     </nav>
 
-    <div class="container-fluid mt-4">
-      <div class="row g-4">
-        <div class="col-md-8">
-          <div class="card upload-card shadow-sm">
-            <div class="card-header bg-secondary text-light d-flex align-items-center">
-              <i class="bi bi-cloud-upload-fill me-2"></i>
-              <h5 class="mb-0">Submit Your Assignment</h5>
+    <div id="page-content" class="flex-grow-1 p-4">
+      <div class="topbar mb-4 rounded-3 d-flex justify-content-between align-items-center">
+        <h4 class="m-0 text-accent">Uploads</h4>
+        <div class="user-name" id="userDisplay"></div>
+      </div>
+
+      <div class="container-fluid">
+        <div class="card shadow-sm p-4 upload-card">
+          <h5 class="mb-3"><i class="bi bi-cloud-arrow-up me-2"></i>Upload Your Assessment</h5>
+          <form id="uploadForm">
+            <div class="mb-3">
+              <label for="fileUpload" class="form-label">Select assessment file</label>
+              <input type="file" class="form-control" id="fileUpload" accept=".pdf,.doc,.docx,.zip">
             </div>
-            <div class="card-body">
-              <form id="uploadForm">
-                <div class="mb-3">
-                  <label for="courseSelect" class="form-label">Course</label>
-                  <select id="courseSelect" class="form-select" required>
-                    <option value="" disabled selected>Select your course</option>
-                    <option>Software Development</option>
-                    <option>Web Development</option>
-                    <option>Software Engineering</option>
-                    <option>Cloud Computing</option>
-                  </select>
-                </div>
-
-                <div class="mb-3">
-                  <label for="assessmentType" class="form-label">Assessment Type</label>
-                  <select id="assessmentType" class="form-select" required>
-                    <option value="" disabled selected>Select assessment type</option>
-                    <option>Assignment</option>
-                    <option>Project</option>
-                    <option>Quiz</option>
-                    <option>Case Study</option>
-                  </select>
-                </div>
-
-                <div class="mb-3">
-                  <label for="description" class="form-label">Description</label>
-                  <textarea id="description" class="form-control" rows="3" placeholder="Add any notes or comments about your submission..."></textarea>
-                </div>
-
-                <div class="drag-area" id="dragArea">
-                  <i class="bi bi-file-earmark-arrow-up"></i>
-                  <p>Drag & Drop your assignment here or click to browse</p>
-                  <input type="file" id="fileInput" hidden required>
-                </div>
-
-                <div class="text-center mt-4">
-                  <button type="submit" class="btn btn-accent px-4"><i class="bi bi-upload me-2"></i>Upload</button>
-                </div>
-              </form>
-            </div>
-          </div>
+            <button type="submit" class="btn btn-accent"><i class="bi bi-upload"></i> Upload</button>
+          </form>
         </div>
 
-        <div class="col-md-4">
-          <div class="card guidelines-card shadow-sm">
-            <div class="card-header bg-secondary text-light d-flex align-items-center">
-              <i class="bi bi-info-circle-fill me-2"></i>
-              <h5 class="mb-0">Upload Guidelines</h5>
-            </div>
-            <div class="card-body">
-              <ul class="list-unstyled">
-                <li><i class="bi bi-check-circle text-accent me-2"></i>Accepted formats: PDF, DOCX, ZIP</li>
-                <li><i class="bi bi-check-circle text-accent me-2"></i>Maximum file size: 25MB</li>
-                <li><i class="bi bi-check-circle text-accent me-2"></i>Use proper naming: <code>AssessmentName_StudentName.pdf</code></li>
-                <li><i class="bi bi-check-circle text-accent me-2"></i>Ensure your file is virus-free</li>
-                <li><i class="bi bi-check-circle text-accent me-2"></i>Once uploaded, you can’t re-submit</li>
-              </ul>
-            </div>
-          </div>
+        <div class="card shadow-sm p-4 mt-4">
+          <h5 class="mb-3"><i class="bi bi-list-check me-2"></i>Your Uploaded Assessments</h5>
+          <ul class="list-group list-group-flush" id="uploadedList">
+            <li class="list-group-item text-center text-muted">No uploads yet...</li>
+          </ul>
         </div>
       </div>
     </div>
-
   </div>
-</div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-<script src="JS/admin.js"></script>
-<script>
-  const dragArea = document.getElementById('dragArea');
-  const fileInput = document.getElementById('fileInput');
-
-  dragArea.addEventListener('click', () => fileInput.click());
-
-  dragArea.addEventListener('dragover', e => {
-    e.preventDefault();
-    dragArea.classList.add('dragover');
-  });
-
-  dragArea.addEventListener('dragleave', () => dragArea.classList.remove('dragover'));
-
-  dragArea.addEventListener('drop', e => {
-    e.preventDefault();
-    dragArea.classList.remove('dragover');
-    const files = e.dataTransfer.files;
-    if (files.length) {
-      fileInput.files = files;
-      dragArea.querySelector('p').textContent = `File selected: ${files[0].name}`;
-    }
-  });
-
-  fileInput.addEventListener('change', () => {
-    if (fileInput.files.length) {
-      dragArea.querySelector('p').textContent = `File selected: ${fileInput.files[0].name}`;
-    }
-  });
-
-  document.getElementById('uploadForm').addEventListener('submit', e => {
-    e.preventDefault();
-    alert('Your assignment has been uploaded successfully!');
-    e.target.reset();
-    dragArea.querySelector('p').textContent = 'Drag & Drop your assignment here or click to browse';
-  });
-</script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="JS/admin.js"></script>
 </body>
 </html>

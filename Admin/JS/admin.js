@@ -68,3 +68,55 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const uploadForm = document.getElementById("uploadForm");
+  const fileInput = document.getElementById("fileUpload");
+  const uploadedList = document.getElementById("uploadedList");
+
+  if (uploadForm) {
+    uploadForm.addEventListener("submit", e => {
+      e.preventDefault();
+      const file = fileInput.files[0];
+      if (!file) {
+        alert("Please select a file to upload.");
+        return;
+      }
+
+      const uploads = JSON.parse(localStorage.getItem("userUploads")) || [];
+      const fileName = file.name;
+      const fakeUrl = URL.createObjectURL(file);
+
+      uploads.push({ fileName, fileUrl: fakeUrl });
+      localStorage.setItem("userUploads", JSON.stringify(uploads));
+
+      displayUploads();
+      uploadForm.reset();
+    });
+  }
+
+  function displayUploads() {
+    if (!uploadedList) return;
+    const uploads = JSON.parse(localStorage.getItem("userUploads")) || [];
+
+    if (uploads.length === 0) {
+      uploadedList.innerHTML = `<li class="list-group-item text-center text-muted">No uploads yet...</li>`;
+    } else {
+      uploadedList.innerHTML = "";
+      uploads.forEach(upload => {
+        const li = document.createElement("li");
+        li.classList.add("list-group-item", "d-flex", "justify-content-between", "align-items-center");
+        li.innerHTML = `
+          <span>${upload.fileName}</span>
+          <a href="${upload.fileUrl}" class="btn btn-accent btn-sm" download>
+            <i class="bi bi-download"></i> Download
+          </a>
+        `;
+        uploadedList.appendChild(li);
+      });
+    }
+  }
+
+  displayUploads();
+});
+
