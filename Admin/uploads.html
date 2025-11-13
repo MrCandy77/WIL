@@ -14,12 +14,12 @@
       padding: 40px;
       text-align: center;
       color: var(--text);
-      background-color: rgba(255,255,255,0.02);
+      background-color: rgb(176, 176, 176);
       transition: all 0.3s ease;
       cursor: pointer;
     }
     .upload-box.dragover {
-      background-color: rgba(148,137,121,0.15);
+      background-color: rgba(78, 78, 78, 0.15);
       border-color: var(--text);
     }
     .upload-box i {
@@ -30,7 +30,6 @@
 </head>
 <body>
   <div id="wrapper">
-    <!-- Sidebar -->
     <nav class="sidebar bg-dark" id="sidebar">
       <div class="sidebar-header text-center py-4">
         <img src="Images/logo.jpg" alt="Logo" class="logo mb-2">
@@ -40,7 +39,7 @@
       <ul class="nav flex-column mt-4">
         <li class="nav-item"><a href="dashboard.html" class="nav-link"><i class="bi bi-speedometer2 me-2"></i>Dashboard</a></li>
         <li class="nav-item"><a href="resources.html" class="nav-link"><i class="bi bi-journal-bookmark me-2"></i>Resources</a></li>
-        <li class="nav-item"><a href="downloads.html" class="nav-link"><i class="bi bi-download me-2"></i>Downloads</a></li>
+        <li class="nav-item"><a href="download.html" class="nav-link"><i class="bi bi-download me-2"></i>Downloads</a></li>
         <li class="nav-item"><a href="uploads.html" class="nav-link active"><i class="bi bi-upload me-2"></i>Uploads</a></li>
         <li class="nav-item"><a href="info.html" class="nav-link"><i class="bi bi-person-vcard me-2"></i>Profile Info</a></li>
         <li class="nav-item"><a href="../public/contact.html" class="nav-link"><i class="bi bi-envelope me-2"></i>Contact Us</a></li>
@@ -51,7 +50,6 @@
       </div>
     </nav>
 
-    <!-- Main content -->
     <div id="page-content" class="flex-grow-1 p-4">
       <div class="topbar mb-4 rounded-3 d-flex justify-content-between align-items-center">
         <h4 class="m-0 text-accent">Uploads</h4>
@@ -59,7 +57,6 @@
       </div>
 
       <div class="container-fluid">
-        <!-- Upload card -->
         <div class="card shadow-sm p-4 upload-card">
           <h5 class="mb-3"><i class="bi bi-cloud-arrow-up me-2"></i>Upload Your Assessment</h5>
 
@@ -77,7 +74,6 @@
           </form>
         </div>
 
-        <!-- Uploaded list -->
         <div class="card shadow-sm p-4 mt-4">
           <h5 class="mb-3"><i class="bi bi-list-check me-2"></i>Your Uploaded Assessments</h5>
           <ul class="list-group list-group-flush" id="uploadedList">
