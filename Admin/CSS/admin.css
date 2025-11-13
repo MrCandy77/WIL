@@ -89,7 +89,7 @@ body {
 .stat-card, .download-card, .notice-card, .assignment-card, .card {
   background-color: #2b313a;
   color: var(--text);
-  border: none;
+  border: 2px solid #393E46;
   border-radius: 12px;
   padding: 1.5rem;
   margin-bottom: 1rem;
