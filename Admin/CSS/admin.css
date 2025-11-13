@@ -201,7 +201,6 @@ h3, h4, h5 {
   background-color: var(--navbar);
 }
 
-/* Download card specific styling */
 .download-card h5 {
   font-weight: 500;
 }
@@ -210,7 +209,6 @@ h3, h4, h5 {
   font-size: 0.95rem;
 }
 
-/* Responsive adjustments */
 @media (max-width: 992px) {
   .sidebar {
     left: -250px;
