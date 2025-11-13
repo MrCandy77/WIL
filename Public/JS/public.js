@@ -20,7 +20,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const user = { fullName, username, mobile, email, campus, password };
       localStorage.setItem("registeredUser", JSON.stringify(user));
-      alert("Registration successful! Please log in.");
       window.location.href = "login.html";
     });
   }
@@ -49,7 +48,6 @@ document.addEventListener("DOMContentLoaded", () => {
         localStorage.setItem("currentUser", JSON.stringify(sessionUser));
         localStorage.setItem("isLoggedIn", "true");
 
-        alert(`Welcome, ${storedUser.fullName}!`);
         window.location.href = "../Admin/dashboard.html";
       } else {
         alert("Invalid email or password.");
