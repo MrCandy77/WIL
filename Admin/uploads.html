@@ -6,7 +6,27 @@
   <title>Uploads | EduTrack</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
-  <link href="CSS/admin.css" rel="stylesheet">
+  <link href="../css/global.css" rel="stylesheet">
+  <style>
+    .upload-box {
+      border: 2px dashed var(--accent);
+      border-radius: 20px;
+      padding: 40px;
+      text-align: center;
+      color: var(--text);
+      background-color: rgba(255,255,255,0.02);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    .upload-box.dragover {
+      background-color: rgba(148,137,121,0.15);
+      border-color: var(--text);
+    }
+    .upload-box i {
+      font-size: 48px;
+      color: var(--accent);
+    }
+  </style>
 </head>
 <body>
   <div id="wrapper">
@@ -19,7 +39,7 @@
       <ul class="nav flex-column mt-4">
         <li class="nav-item"><a href="dashboard.html" class="nav-link"><i class="bi bi-speedometer2 me-2"></i>Dashboard</a></li>
         <li class="nav-item"><a href="resources.html" class="nav-link"><i class="bi bi-journal-bookmark me-2"></i>Resources</a></li>
-        <li class="nav-item"><a href="download.html" class="nav-link"><i class="bi bi-download me-2"></i>Downloads</a></li>
+        <li class="nav-item"><a href="downloads.html" class="nav-link"><i class="bi bi-download me-2"></i>Downloads</a></li>
         <li class="nav-item"><a href="uploads.html" class="nav-link active"><i class="bi bi-upload me-2"></i>Uploads</a></li>
         <li class="nav-item"><a href="info.html" class="nav-link"><i class="bi bi-person-vcard me-2"></i>Profile Info</a></li>
         <li class="nav-item"><a href="../public/contact.html" class="nav-link"><i class="bi bi-envelope me-2"></i>Contact Us</a></li>
@@ -39,12 +59,18 @@
       <div class="container-fluid">
         <div class="card shadow-sm p-4 upload-card">
           <h5 class="mb-3"><i class="bi bi-cloud-arrow-up me-2"></i>Upload Your Assessment</h5>
-          <form id="uploadForm">
-            <div class="mb-3">
-              <label for="fileUpload" class="form-label">Select assessment file</label>
-              <input type="file" class="form-control" id="fileUpload" accept=".pdf,.doc,.docx,.zip">
-            </div>
-            <button type="submit" class="btn btn-accent"><i class="bi bi-upload"></i> Upload</button>
+
+          <div id="uploadBox" class="upload-box mb-3">
+            <i class="bi bi-cloud-arrow-up"></i>
+            <p class="mt-2 mb-0">Drag & Drop your file here</p>
+            <small class="text-muted">or click to browse</small>
+          </div>
+
+          <form id="uploadForm" class="text-center">
+            <input type="file" class="form-control d-none" id="fileUpload" accept=".pdf,.doc,.docx,.zip">
+            <button type="submit" class="btn btn-accent mt-2">
+              <i class="bi bi-upload"></i> Upload File
+            </button>
           </form>
         </div>
 
@@ -59,6 +85,6 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="JS/admin.js"></script>
+  <script src="../js/global.js"></script>
 </body>
 </html>
