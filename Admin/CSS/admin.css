@@ -103,7 +103,7 @@ body {
 }
 
 .stat-card h5, .download-card h5, .card h5, .notice-card h5, .assignment-card h5 {
-  color: var(--accent);
+  color: var(--text);
   font-weight: 500;
 }
 
@@ -190,7 +190,6 @@ h3, h4, h5 {
   color: var(--accent);
 }
 
-/* Scrollbar styling for sidebar */
 .sidebar::-webkit-scrollbar {
   width: 6px;
 }
