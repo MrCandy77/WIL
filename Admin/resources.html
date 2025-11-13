@@ -41,6 +41,16 @@
 
     .video-title { font-size: 1rem; font-weight: 600; margin-top: 0.5rem; }
     .video-author { font-size: 0.85rem; color: #bbb; }
+
+    .lecture-note-card {
+      border: 1px solid #fff;
+      border-radius: 8px;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .lecture-note-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(255,255,255,0.2);
+    }
   </style>
 </head>
 <body>
@@ -154,7 +164,6 @@
         </div>
       </div>
 
-      <!-- Lecture Notes -->
       <div class="row g-4 mb-5">
         <div class="col-12">
           <div class="card stat-card resource-card bg-dark">
@@ -164,9 +173,9 @@
             </div>
             <div class="card-body">
               <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-                
+
                 <div class="col">
-                  <div class="card h-100 bg-dark text-light border-0 border-color-accent">
+                  <div class="card lecture-note-card h-100 bg-dark text-light">
                     <div class="card-body d-flex flex-column">
                       <h6 class="card-title"><i class="bi bi-file-earmark-pdf text-danger me-2"></i>Week 1 – HTML & CSS</h6>
                       <p class="card-text">Introduction to markup, selectors, box model, and layout basics.</p>
@@ -176,7 +185,7 @@
                 </div>
 
                 <div class="col">
-                  <div class="card h-100 bg-dark text-light border-0">
+                  <div class="card lecture-note-card h-100 bg-dark text-light">
                     <div class="card-body d-flex flex-column">
                       <h6 class="card-title"><i class="bi bi-file-earmark-pdf text-danger me-2"></i>Week 2 – JavaScript Basics</h6>
                       <p class="card-text">Variables, functions, loops, and DOM manipulation fundamentals.</p>
@@ -186,7 +195,7 @@
                 </div>
 
                 <div class="col">
-                  <div class="card h-100 bg-dark text-light border-0">
+                  <div class="card lecture-note-card h-100 bg-dark text-light">
                     <div class="card-body d-flex flex-column">
                       <h6 class="card-title"><i class="bi bi-file-earmark-pdf text-danger me-2"></i>Week 3 – HTML & CSS Intermediate</h6>
                       <p class="card-text">Flexbox, CSS Grid, media queries, and mobile-first approach.</p>
@@ -196,7 +205,7 @@
                 </div>
 
                 <div class="col">
-                  <div class="card h-100 bg-dark text-light border-0">
+                  <div class="card lecture-note-card h-100 bg-dark text-light">
                     <div class="card-body d-flex flex-column">
                       <h6 class="card-title"><i class="bi bi-file-earmark-pdf text-danger me-2"></i>Week 4 – Azure Fundamentals</h6>
                       <p class="card-text">Virtual machines, storage, networking, and Azure services overview.</p>
@@ -206,7 +215,7 @@
                 </div>
 
                 <div class="col">
-                  <div class="card h-100 bg-dark text-light border-0">
+                  <div class="card lecture-note-card h-100 bg-dark text-light">
                     <div class="card-body d-flex flex-column">
                       <h6 class="card-title"><i class="bi bi-file-earmark-pdf text-danger me-2"></i>Week 5 – SQL & Databases</h6>
                       <p class="card-text">Normalization, joins, indexing, and writing efficient queries.</p>
@@ -216,7 +225,7 @@
                 </div>
 
                 <div class="col">
-                  <div class="card h-100 bg-dark text-light border-0">
+                  <div class="card lecture-note-card h-100 bg-dark text-light">
                     <div class="card-body d-flex flex-column">
                       <h6 class="card-title"><i class="bi bi-file-earmark-pdf text-danger me-2"></i>Week 6 – Python</h6>
                       <p class="card-text">Python Fundamentals and intro to basic programming.</p>
@@ -231,7 +240,6 @@
         </div>
       </div>
 
-      <!-- Video Tutorials -->
       <div class="row g-4">
         <div class="col-12">
           <div class="card stat-card shadow-sm resource-card bg-dark">
