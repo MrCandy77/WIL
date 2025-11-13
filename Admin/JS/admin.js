@@ -27,4 +27,20 @@ document.addEventListener("DOMContentLoaded", () => {
       window.location.href = "../Public/login.html";
     });
   }
+
+  const uploadedAssessments = JSON.parse(localStorage.getItem("uploadedAssessments")) || [];
+  const uploadedList = document.getElementById("uploadedList");
+
+  if (uploadedList && uploadedAssessments.length > 0) {
+    uploadedList.innerHTML = "";
+    uploadedAssessments.forEach(item => {
+      const li = document.createElement("li");
+      li.className = "list-group-item d-flex justify-content-between align-items-center";
+      li.innerHTML = `
+        ${item.name}
+        <a href="${item.link}" class="btn btn-accent btn-sm" download>Download</a>
+      `;
+      uploadedList.appendChild(li);
+    });
+  }
 });
