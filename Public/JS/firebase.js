@@ -1,11 +1,8 @@
-// --------------------------------------
-// Firebase Setup (v12 - Modular Version)
-// --------------------------------------
+// public/JS/firebase.js
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
 import { getAuth } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
 import { getFirestore } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
 
-// Your Firebase config (SAFE to include)
 const firebaseConfig = {
     apiKey: "AIzaSyA-z0wjbC9xRWR5Ih_qyPHNSA2RaSMgPjk",
     authDomain: "edutrack-53c83.firebaseapp.com",
@@ -16,7 +13,6 @@ const firebaseConfig = {
     measurementId: "G-1N03KS3Z4L"
 };
 
-// Initialize Firebase
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const db = getFirestore(app);

@@ -1,40 +1,41 @@
-import { auth, db } from "./firebase.js";
-import { 
-    createUserWithEmailAndPassword 
-} from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
+// public/JS/register.js
+document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("registerForm");
+    if (!form) return;
 
-import { 
-    doc, setDoc 
-} from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
+    form.addEventListener("submit", async (e) => {
+        e.preventDefault();
 
-document.getElementById("registerForm").addEventListener("submit", async (e) => {
-    e.preventDefault();
+        const fullname = document.getElementById("fullname").value.trim();
+        const username = document.getElementById("username").value.trim();
+        const mobile   = document.getElementById("mobile").value.trim();
+        const email    = document.getElementById("email").value.trim();
+        const campus   = document.getElementById("campus").value.trim();
+        const password = document.getElementById("password").value;
+        const confirm  = document.getElementById("confirm-password").value;
 
-    const fullname = document.getElementById("fullname").value;
-    const username = document.getElementById("username").value;
-    const mobile = document.getElementById("mobile").value;
-    const email = document.getElementById("email").value;
-    const campus = document.getElementById("campus").value;
-    const password = document.getElementById("password").value;
+        if (password !== confirm) {
+            alert("Passwords do not match!");
+            return;
+        }
 
-    try {
-        // Create Firebase User
-        const userCred = await createUserWithEmailAndPassword(auth, email, password);
-        const user = userCred.user;
+        try {
+            const { createUserWithEmailAndPassword } = await import("https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js");
+            const { doc, setDoc } = await import("https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js");
 
-        // Save Extra Info to Firestore
-        await setDoc(doc(db, "users", user.uid), {
-            fullname,
-            username,
-            mobile,
-            email,
-            campus
-        });
+            const cred = await createUserWithEmailAndPassword(window.auth, email, password);
+            const uid = cred.user.uid;
 
-        alert("Account created!");
-        window.location.href = "login.html";
+            await setDoc(doc(window.db, "users", uid), {
+                fullname, username, mobile, email, campus
+            });
 
-    } catch (err) {
-        alert(err.message);
-    }
+            alert("Success! Redirecting to login...");
+            window.location.href = "login.html";
+
+        } catch (err) {
+            console.error(err);
+            alert("Registration failed: " + (err.message || "Unknown error"));
+        }
+    });
 });

@@ -1,33 +1,31 @@
-import { auth, db } from "./firebase.js";
-import { 
-    onAuthStateChanged, signOut 
-} from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
+// Dashboard/JS/info.js
+import { auth, db } from "../public/JS/firebase.js";
+import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
+import { doc, getDoc } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
 
-import { 
-    getDoc, doc 
-} from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
-
-onAuthStateChanged(auth, async (user) => {
+onAuthStateChanged(auth, async user => {
     if (!user) {
-        window.location.href = "../login.html";
+        window.location.href = "../public/login.html";
         return;
     }
 
-    const ref = doc(db, "users", user.uid);
-    const snap = await getDoc(ref);
+    // Show name in top bar
+    document.getElementById("userDisplay").textContent = user.email.split("@")[0];
 
+    // Fetch profile from Firestore
+    const snap = await getDoc(doc(db, "users", user.uid));
     if (snap.exists()) {
-        const data = snap.data();
-
-        document.getElementById("info-fullname").textContent = data.fullname;
-        document.getElementById("info-username").textContent = data.username;
-        document.getElementById("info-email").textContent = data.email;
-        document.getElementById("info-mobile").textContent = data.mobile;
-        document.getElementById("info-campus").textContent = data.campus;
+        const d = snap.data();
+        document.getElementById("p_fullname").value = d.fullname || "";
+        document.getElementById("p_username").value = d.username || "";
+        document.getElementById("p_email").value    = d.email    || "";
+        document.getElementById("p_mobile").value   = d.mobile   || "";
+        document.getElementById("p_campus").value   = d.campus   || "";
     }
 });
 
-window.logout = async function () {
+// Logout button (shared with admin.js)
+document.getElementById("logoutBtn")?.addEventListener("click", async () => {
     await signOut(auth);
-    window.location.href = "../login.html";
-};
+    window.location.href = "../public/login.html";
+});
