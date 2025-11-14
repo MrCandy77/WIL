@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // === REGISTRATION ===
   const registerForm = document.getElementById("registerForm");
   if (registerForm) {
     registerForm.addEventListener("submit", (e) => {
@@ -54,4 +53,38 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
+});
+
+// SAVE REGISTER DATA TO LOCAL STORAGE
+document.addEventListener("DOMContentLoaded", function () {
+
+    const form = document.getElementById("registerForm");
+    if (!form) return; // Only run on register page
+
+    form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        let password = document.getElementById("password").value;
+        let confirmPassword = document.getElementById("confirm-password").value;
+
+        if (password !== confirmPassword) {
+            alert("Passwords do not match!");
+            return;
+        }
+
+        const userData = {
+            fullname: document.getElementById("fullname").value,
+            username: document.getElementById("username").value,
+            mobile: document.getElementById("mobile").value,
+            email: document.getElementById("email").value,
+            campus: document.getElementById("campus").value,
+            password: password
+        };
+
+        // SAVE TO LOCAL STORAGE
+        localStorage.setItem("user", JSON.stringify(userData));
+
+        alert("Account created successfully!");
+        window.location.href = "../Admin/info.html"; // Redirect to info page
+    });
 });
