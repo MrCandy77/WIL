@@ -1,22 +1,33 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const storedUser = localStorage.getItem("user");
+import { auth, db } from "./firebase.js";
+import { 
+    onAuthStateChanged, signOut 
+} from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
 
-    if (!storedUser) {
-        alert("No user data found!");
-        window.location.href = "../Public/login.html";
+import { 
+    getDoc, doc 
+} from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
+
+onAuthStateChanged(auth, async (user) => {
+    if (!user) {
+        window.location.href = "../login.html";
         return;
     }
 
-    const user = JSON.parse(storedUser);
+    const ref = doc(db, "users", user.uid);
+    const snap = await getDoc(ref);
 
-    document.getElementById("p_username").value = user.username;
-    document.getElementById("p_fullname").value = user.fullname;
-    document.getElementById("p_email").value = user.email;
-    document.getElementById("p_mobile").value = user.mobile;
-    document.getElementById("p_campus").value = user.campus;
+    if (snap.exists()) {
+        const data = snap.data();
+
+        document.getElementById("info-fullname").textContent = data.fullname;
+        document.getElementById("info-username").textContent = data.username;
+        document.getElementById("info-email").textContent = data.email;
+        document.getElementById("info-mobile").textContent = data.mobile;
+        document.getElementById("info-campus").textContent = data.campus;
+    }
 });
 
-function logout() {
-    localStorage.removeItem("user");
-    window.location.href = "../Public/login.html";
-}
+window.logout = async function () {
+    await signOut(auth);
+    window.location.href = "../login.html";
+};
