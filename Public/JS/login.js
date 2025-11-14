@@ -12,7 +12,7 @@ document.getElementById("loginForm")?.addEventListener("submit", async e => {
 
     try {
         await signInWithEmailAndPassword(auth, email, password);
-        window.location.href = "../Dashboard/info.html";   // go straight to profile
+        window.location.href = "../Admin/dashboard.html";  
     } catch (err) {
         alert(err.message);
     }
