@@ -10,82 +10,226 @@
   <link rel="stylesheet" href="CSS/public.css">
 
   <style>
-    .btn-back-fixed {
-      position: fixed; top: 20px; left: 20px; z-index: 100;
-      background-color: #948979; color: #DCD7C9; border: none;
-      border-radius: 25px; padding: .7rem 1.5rem; font-weight: 500;
-      text-decoration: none; transition: all .3s ease;
+    /* Full-page background */
+    body, html {
+      height: 100%;
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: url('https://cdn.pixabay.com/photo/2020/11/19/08/03/college-5757815_1280.jpg') center/cover no-repeat fixed;
+      position: relative;
     }
-    .btn-back-fixed:hover { background-color: #DCD7C9; color: #222831; }
 
-    .form-row { display: flex; gap: 1rem; }
-    .form-group { flex: 1; }
-    .btn-login-page {
-      background-color: #DCD7C9; color: #222831; border: none;
-      border-radius: 25px; padding: .7rem 2rem; font-weight: 500;
-      width: 100%; margin-top: 1rem;
+    /* Dark overlay with 0.5 opacity */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(34, 40, 49, 0.5); /* #222831 at 50% */
+      z-index: 1;
     }
-    .register-link { margin-top: 1rem; text-align: center; font-size: 0.9rem; }
+
+    /* Center container */
+    .register-container {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 2;
+      padding: 1rem;
+    }
+
+    /* Form card */
+    .register-box {
+      background: rgba(45, 52, 54, 0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 20px;
+      padding: 2.5rem;
+      width: 100%;
+      max-width: 500px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(148, 137, 121, 0.3);
+    }
+
+    .register-box h2 {
+      color: #DCD7C9;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 1.8rem;
+      font-size: 1.8rem;
+    }
+
+    .form-control {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid #948979;
+      color: #DCD7C9;
+      border-radius: 12px;
+      padding: 0.75rem 1rem;
+      font-size: 0.95rem;
+    }
+
+    .form-control::placeholder {
+      color: rgba(220, 215, 201, 0.7);
+    }
+
+    .form-control:focus {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: #DCD7C9;
+      color: #DCD7C9;
+      box-shadow: 0 0 0 0.2rem rgba(220, 215, 201, 0.25);
+    }
+
+    .form-label {
+      color: #948979;
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+
+    .form-row {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .form-group {
+      flex: 1;
+    }
+
+    .btn-register {
+      background: #DCD7C9;
+      color: #222831;
+      border: none;
+      border-radius: 25px;
+      padding: 0.75rem;
+      font-weight: 600;
+      width: 100%;
+      margin-top: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .btn-register:hover {
+      background: #948979;
+      color: #DCD7C9;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(148, 137, 121, 0.3);
+    }
+
+    .login-link {
+      text-align: center;
+      margin-top: 1.5rem;
+      font-size: 0.9rem;
+    }
+
+    .login-link a {
+      color: #948979;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .login-link a:hover {
+      color: #DCD7C9;
+      text-decoration: underline;
+    }
+
+    /* Back button */
+    .btn-back-fixed {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 1000;
+      background: rgba(148, 137, 121, 0.8);
+      color: #DCD7C9;
+      border: none;
+      border-radius: 25px;
+      padding: 0.7rem 1.5rem;
+      font-weight: 500;
+      text-decoration: none;
+      backdrop-filter: blur(8px);
+      transition: all 0.3s;
+    }
+
+    .btn-back-fixed:hover {
+      background: #DCD7C9;
+      color: #222831;
+      transform: translateY(-2px);
+    }
+
+    /* Mobile adjustments */
+    @media (max-width: 576px) {
+      .register-box {
+        padding: 2rem 1.5rem;
+        margin: 1rem;
+      }
+      .form-row {
+        flex-direction: column;
+      }
+      .btn-back-fixed {
+        top: 15px;
+        left: 15px;
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+      }
+    }
   </style>
 </head>
-<body class="register-page">
+<body>
 
   <!-- Back Button -->
   <a href="../index.html" class="btn-back-fixed">Back</a>
 
-  <!-- Main Form -->
-  <div class="login-container">
-    <div class="login-box">
+  <!-- Register Form -->
+  <div class="register-container">
+    <div class="register-box">
       <h2>Create Your Account</h2>
 
       <form id="registerForm">
-        <div class="mb-3 text-start">
+        <div class="mb-3">
           <label for="fullname" class="form-label">Full Name</label>
           <input type="text" class="form-control" id="fullname" placeholder="Gregory Candiotis" required>
         </div>
 
         <div class="form-row">
-          <div class="form-group text-start">
+          <div class="form-group">
             <label for="username" class="form-label">Username</label>
             <input type="text" class="form-control" id="username" placeholder="Gregory" required>
           </div>
-          <div class="form-group text-start">
+          <div class="form-group">
             <label for="mobile" class="form-label">Mobile Number</label>
             <input type="tel" class="form-control" id="mobile" placeholder="0814038256" required>
           </div>
         </div>
 
-        <div class="form-row">
-          <div class="form-group text-start">
+        <div class="form-row mt-3">
+          <div class="form-group">
             <label for="email" class="form-label">Email address</label>
-            <input type="email" class="form-control" id="email" placeholder="gregory.candiotis77@gmail.com" required>
+            <input type="email" class="form-control" id="email" placeholder="gregory.candiotes77@gmail.com" required>
           </div>
-          <div class="form-group text-start">
+          <div class="form-group">
             <label for="campus" class="form-label">Campus</label>
             <input type="text" class="form-control" id="campus" placeholder="Pretoria" required>
           </div>
         </div>
 
-        <div class="mb-3 text-start">
+        <div class="mb-3 mt-3">
           <label for="password" class="form-label">Password</label>
-          <input type="password" class="form-control" id="password" placeholder="••••••••" required>
+          <input type="password" class="form-control" id="password" placeholder="Minimum 6 characters" required>
         </div>
 
-        <div class="mb-3 text-start">
+        <div class="mb-3">
           <label for="confirm-password" class="form-label">Confirm Password</label>
-          <input type="password" class="form-control" id="confirm-password" placeholder="••••••••" required>
+          <input type="password" class="form-control" id="confirm-password" placeholder="Repeat password" required>
         </div>
 
-        <button type="submit" class="btn-login-page">Register</button>
+        <button type="submit" class="btn-register">Register</button>
       </form>
 
-      <div class="register-link">
+      <div class="login-link">
         Already have an account? <a href="login.html">Login here</a>
       </div>
     </div>
   </div>
 
-  <!-- FIREBASE INIT (USING YOUR CONFIG) -->
+  <!-- FIREBASE INIT -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
     import { getAuth } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
@@ -104,8 +248,6 @@
     const app = initializeApp(firebaseConfig);
     window.auth = getAuth(app);
     window.db = getFirestore(app);
-
-    console.log("FIREBASE LOADED SUCCESSFULLY");
   </script>
 
   <!-- REGISTRATION LOGIC -->
@@ -139,11 +281,7 @@
         const uid = cred.user.uid;
 
         await setDoc(doc(window.db, "users", uid), {
-          fullname,
-          username,
-          mobile,
-          email,
-          campus,
+          fullname, username, mobile, email, campus,
           createdAt: new Date().toISOString()
         });
 
@@ -154,7 +292,6 @@
         }, 1000);
 
       } catch (error) {
-        console.error("Registration failed:", error);
         const msg = error.code === "auth/email-already-in-use" 
           ? "This email is already registered." 
           : error.message;
