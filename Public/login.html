@@ -7,220 +7,56 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="CSS/public.css">
   <style>
-    /* Full page layout */
-    .login-wrapper {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      background: #222831;
-      overflow: hidden;
-    }
-
-    /* Left: Login Form */
-    .login-left {
-      flex: 1;
-      padding: 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .login-box {
-      background: rgba(45, 52, 54, 0.95);
-      padding: 2.5rem;
-      border-radius: 20px;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-      width: 100%;
-      max-width: 420px;
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .login-box h2 {
-      color: #DCD7C9;
-      font-weight: 600;
-      margin-bottom: 1.5rem;
-      text-align: center;
-    }
-
-    .form-control {
-      background: rgba(255,255,255,0.1);
-      border: 1px solid #948979;
-      color: #DCD7C9;
-      border-radius: 12px;
-      padding: 0.75rem 1rem;
-    }
-
-    .form-control:focus {
-      background: rgba(255,255,255,0.15);
-      border-color: #DCD7C9;
-      color: #DCD7C9;
-      box-shadow: 0 0 0 0.2rem rgba(220, 215, 201, 0.25);
-    }
-
-    .form-label {
-      color: #948979;
-      font-weight: 500;
-    }
-
-    .btn-login-page {
-      background: #DCD7C9;
-      color: #222831;
-      border: none;
-      border-radius: 25px;
-      padding: 0.75rem;
-      font-weight: 600;
-      width: 100%;
-      margin-top: 1rem;
-      transition: all 0.3s;
-    }
-
-    .btn-login-page:hover {
-      background: #948979;
-      color: #DCD7C9;
-      transform: translateY(-2px);
-    }
-
-    .register-link {
-      text-align: center;
-      margin-top: 1.5rem;
-      font-size: 0.9rem;
-    }
-
-    .register-link a {
-      color: #948979;
-      text-decoration: none;
-    }
-
-    .register-link a:hover {
-      color: #DCD7C9;
-      text-decoration: underline;
-    }
-
-    /* Right: Background Image */
-    .login-right {
-      flex: 1;
-      background: url('https://images.pexels.com/photos/3646172/pexels-photo-3646172.jpeg') center/cover no-repeat;
-      min-height: 100vh;
-      position: relative;
-    }
-
-    .login-right::after {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: linear-gradient(135deg, rgba(34, 40, 49, 0.7), rgba(148, 137, 121, 0.3));
-    }
-
-    /* Back button */
-    .btn-back-fixed {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      z-index: 1000;
-      background: rgba(148, 137, 121, 0.8);
-      color: #DCD7C9;
-      border: none;
-      border-radius: 25px;
-      padding: 0.7rem 1.5rem;
-      font-weight: 500;
-      text-decoration: none;
-      backdrop-filter: blur(5px);
-      transition: all 0.3s;
-    }
-
-    .btn-back-fixed:hover {
-      background: #DCD7C9;
-      color: #222831;
-      transform: translateY(-2px);
-    }
-
-    /* Mobile: Stack vertically */
-    @media (max-width: 992px) {
-      .login-wrapper {
-        flex-direction: column;
-      }
-      .login-right {
-        min-height: 40vh;
-        order: -1;
-      }
-      .login-left {
-        padding: 2rem 1rem;
-      }
-    }
+    .login-wrapper { min-height: 100vh; display: flex; background: #222831; }
+    .login-left, .login-right { flex: 1; display: flex; align-items: center; justify-content: center; padding: 2rem; }
+    .login-box { background: rgba(45,52,54,0.95); padding: 2.5rem; border-radius: 20px; max-width: 420px; width: 100%; box-shadow: 0 15px 35px rgba(0,0,0,0.3); }
+    .btn-login-page { background: #DCD7C9; color: #222831; border-radius: 25px; padding: 0.75rem; width: 100%; font-weight: 600; }
+    .btn-back-fixed { position: fixed; top: 20px; left: 20px; z-index: 1050; background: rgba(45,52,54,0.8); color: #DCD7C9; padding: 0.5rem 1rem; border-radius: 50px; }
+    .login-right { background: url('https://images.pexels.com/photos/3646172/pexels-photo-3646172.jpeg') center/cover; position: relative; }
+    .login-right::after { content:''; position:absolute; inset:0; background: linear-gradient(135deg, rgba(34,40,49,0.7), rgba(148,137,121,0.3)); }
   </style>
 </head>
 <body>
-
-  <!-- Back Button -->
-  <a href="../index.html" class="btn-back-fixed">Back</a>
-
-  <!-- Main Layout -->
+  <a href="../index.html" class="btn-back-fixed">← Back</a>
   <div class="login-wrapper">
-    
-    <!-- LEFT: LOGIN FORM -->
     <div class="login-left">
       <div class="login-box">
-        <h2>Login to Your Account</h2>
-
+        <h2 class="text-center text-light mb-4">Login to EduTrack</h2>
         <form id="loginForm">
           <div class="mb-3">
-            <label for="email" class="form-label">Email address</label>
-            <input type="email" class="form-control" id="email" placeholder="gregory.candiotes77+test1@gmail.com" required>
+            <label class="form-label text-light">Email</label>
+            <input type="email" id="email" class="form-control" required placeholder="you@example.com">
           </div>
           <div class="mb-3">
-            <label for="password" class="form-label">Password</label>
-            <input type="password" class="form-control" id="password" placeholder="••••••••" required>
+            <label class="form-label text-light">Password</label>
+            <input type="password" id="password" class="form-control" required>
           </div>
-          <button type="submit" class="btn-login-page">Login</button>
+          <button type="submit" class="btn btn-login-page">Login</button>
         </form>
-
-        <div class="register-link">
-          Don't have an account? <a href="register.html">Register here</a>
-        </div>
+        <p class="text-center text-muted mt-3">
+          No account? <a href="register.html" class="text-accent">Register here</a>
+        </p>
       </div>
     </div>
-
-    <!-- RIGHT: BACKGROUND IMAGE -->
     <div class="login-right"></div>
   </div>
 
-  <!-- FIREBASE INIT -->
   <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
-    import { getAuth } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
+    import { auth } from './JS/firebase.js';
+    import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyA-z0wjbC9xRWR5Ih_qyPHNSA2RaSMgPjk",
-      authDomain: "edutrack-53c83.firebaseapp.com",
-      projectId: "edutrack-53c83",
-      storageBucket: "edutrack-53c83.firebasestorage.app",
-      messagingSenderId: "1063309648434",
-      appId: "1:1063309648434:web:ec41f5a8d3b65988a6122b",
-      measurementId: "G-7SNJE63W71"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    window.auth = getAuth(app);
-  </script>
-
-  <!-- LOGIN LOGIC -->
-  <script type="module">
     document.getElementById("loginForm").addEventListener("submit", async (e) => {
       e.preventDefault();
       const email = document.getElementById("email").value.trim();
       const password = document.getElementById("password").value;
 
       try {
-        const { signInWithEmailAndPassword } = await import("https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js");
-        await signInWithEmailAndPassword(window.auth, email, password);
-        window.location.href = "../Admin/dashboard.html";  // YOUR PROFILE PAGE
+        await signInWithEmailAndPassword(auth, email, password);
+        window.location.href = "../Admin/dashboard.html";
       } catch (err) {
         alert("Login failed: " + (err.code === "auth/wrong-password" ? "Wrong password" : err.message));
       }
     });
   </script>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
