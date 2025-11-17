@@ -10,8 +10,7 @@ const firebaseConfig = {
   projectId: "edutrack-53c83",
   storageBucket: "edutrack-53c83.firebasestorage.app",
   messagingSenderId: "1063309648434",
-  appId: "1:1063309648434:web:ec41f5a8d3b65988a6122b",
-  measurementId: "G-7SNJE63W71"
+  appId: "1:1063309648434:web:ec41f5a8d3b65988a6122b"
 };
 
 const app = initializeApp(firebaseConfig);
