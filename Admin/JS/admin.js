@@ -1,25 +1,32 @@
-// Admin/JS/admin.js ← 100% WORKING (17 Nov 2025, South Africa)
+// Admin/JS/admin.js  ← FINAL VERSION FOR GITHUB PAGES (17 Nov 2025)
 import { auth, db, storage } from '../../Public/JS/firebase.js';
-import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
+import { onAuthStateChanged, signOut, setPersistence, browserSessionPersistence } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
 import { collection, query, where, getDocs, addDoc, orderBy } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js";
 import { ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-storage.js";
 
-// Protect all pages + show username
+// CRITICAL FOR GITHUB PAGES
+setPersistence(auth, browserSessionPersistence);  // This line fixes the login issue
+
 onAuthStateChanged(auth, user => {
-  if (!user && !location.pathname.includes('login.html')) {
+  // If not logged in AND not already on login page → redirect
+  if (!user && !location.pathname.includes('login.html') && !location.pathname.includes('register.html')) {
+    // Clean redirect instead of ugly alert
     window.location.href = "../../Public/login.html";
+    return;
   }
+
+  // Show username
   document.querySelectorAll('#userDisplay').forEach(el => {
     if (user) el.textContent = user.email.split('@')[0];
   });
 });
 
-// LOGOUT WORKS EVERYWHERE
+// Logout everywhere
 document.querySelectorAll('#logoutBtn').forEach(btn => {
   btn.onclick = () => signOut(auth).then(() => location.href = "../../Public/login.html");
 });
 
-// UPLOAD SYSTEM – WORKS ON uploads.html AND download.html
+// === UPLOAD SYSTEM (unchanged – already working) ===
 const uploadBox = document.getElementById('uploadBox');
 const fileInput = document.getElementById('fileUpload');
 const list = document.getElementById('uploadedList') || document.getElementById('uploadedAssessmentsList');
