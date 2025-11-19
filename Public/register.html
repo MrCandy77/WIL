@@ -185,28 +185,28 @@
       <form id="registerForm">
         <div class="mb-3">
           <label for="fullname" class="form-label">Full Name</label>
-          <input type="text" class="form-control" id="fullname" placeholder="Gregory Candiotis" required>
+          <input type="text" class="form-control" id="fullname" placeholder="Full Name" required>
         </div>
 
         <div class="form-row">
           <div class="form-group">
             <label for="username" class="form-label">Username</label>
-            <input type="text" class="form-control" id="username" placeholder="Gregory" required>
+            <input type="text" class="form-control" id="username" placeholder="Name" required>
           </div>
           <div class="form-group">
             <label for="mobile" class="form-label">Mobile Number</label>
-            <input type="tel" class="form-control" id="mobile" placeholder="0814038256" required>
+            <input type="tel" class="form-control" id="mobile" placeholder="10 Digit" required>
           </div>
         </div>
 
         <div class="form-row mt-3">
           <div class="form-group">
             <label for="email" class="form-label">Email address</label>
-            <input type="email" class="form-control" id="email" placeholder="gregory.candiotes77@gmail.com" required>
+            <input type="email" class="form-control" id="email" placeholder="name@gmail.com" required>
           </div>
           <div class="form-group">
             <label for="campus" class="form-label">Campus</label>
-            <input type="text" class="form-control" id="campus" placeholder="Pretoria" required>
+            <input type="text" class="form-control" id="campus" placeholder="" required>
           </div>
         </div>
 
@@ -231,7 +231,6 @@
 
   <!-- FIREBASE INIT -->
     <script type="module">
-      // Initialize Firebase (only once)
       import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
       import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
       import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
