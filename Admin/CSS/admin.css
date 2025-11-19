@@ -187,7 +187,20 @@ body {
 }
 
 h3, h4, h5 {
-  color: var(--accent);
+  color: var(--text);
+}
+
+h4{
+  font-weight: 600;
+  font-size: 2.3rem;
+}
+
+h3{
+  font-size: 1.9rem;
+}
+
+h3{
+  font-size: 1.5rem;
 }
 
 .sidebar::-webkit-scrollbar {
