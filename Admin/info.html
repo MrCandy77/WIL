@@ -9,19 +9,11 @@
   <link rel="stylesheet" href="CSS/admin.css">
   <style>
     body { background-color: #222831; color: #DCD7C9; }
-    .profile-card {
-      max-width: 650px; margin: 2rem auto; padding: 2.5rem;
-      background: #2d3436; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-    }
-    .info-item {
-      display: flex; justify-content: space-between; padding: 1rem 0;
-      border-bottom: 1px solid #444; font-size: 1.1rem;
-    }
+    .profile-card { max-width: 650px; margin: 2rem auto; padding: 2.5rem; background: #2d3436; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
+    .info-item { display: flex; justify-content: space-between; padding: 1rem 0; border-bottom: 1px solid #444; font-size: 1.1rem; }
     .info-item:last-child { border-bottom: none; }
     .label { color: #948979; font-weight: 500; }
     .value { color: #DCD7C9; font-weight: 600; }
-    .topbar { background: #393E46; padding: 1rem 2rem; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
-    .sidebar { width: 250px; min-height: 100vh; }
   </style>
 </head>
 <body>
@@ -33,66 +25,56 @@
       <h4 class="text-light">EduTrack</h4>
     </div>
     <ul class="nav flex-column mt-4">
-      <li class="nav-item"><a href="dashboard.html" class="nav-link"><i class="bi bi-speedometer2 me-2"></i>Dashboard</a></li>
-      <li class="nav-item"><a href="resources.html" class="nav-link"><i class="bi bi-journal-bookmark me-2"></i>Resources</a></li>
-      <li class="nav-item"><a href="download.html" class="nav-link"><i class="bi bi-download me-2"></i>Downloads</a></li>
-      <li class="nav-item"><a href="uploads.html" class="nav-link"><i class="bi bi-upload me-2"></i>Uploads</a></li>
-      <li class="nav-item"><a href="info.html" class="nav-link active"><i class="bi bi-person-vcard me-2"></i>Profile Info</a></li>
+      <li class="nav-item"><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+      <li class="nav-item"><a href="resources.html" class="nav-link">Resources</a></li>
+      <li class="nav-item"><a href="download.html" class="nav-link">Downloads</a></li>
+      <li class="nav-item"><a href="uploads.html" class="nav-link">Uploads</a></li>
+      <li class="nav-item"><a href="info.html" class="nav-link active">Profile Info</a></li>
     </ul>
     <div class="logout-section text-center mt-auto mb-3">
-      <button id="logoutBtn" class="btn btn-outline-light w-75 text-light">Logout</button>
+      <button id="logoutBtn" class="btn btn-outline-light w-75">Logout</button>
     </div>
   </nav>
 
   <div id="page-content" class="flex-grow-1 p-4">
-    <div class="topbar mb-4 rounded-3 d-flex justify-content-between align-items-center">
-      <h4 class="m-0 text-accent">My Profile</h4>
-      <div class="user-name text-light" id="userDisplay">Loading...</div>
+    <div class="topbar mb-4 rounded-3 d-flex justify-content-between align-items-center bg-secondary">
+      <h4 class="m-0 text-light">My Profile</h4>
+      <div class="text-light" id="userDisplay">Loading...</div>
     </div>
 
     <div class="container-fluid">
       <div class="profile-card">
-        <div class="text-center mb-4">
-          <h2>User Information</h2>
-        </div>
-
+        <h2 class="text-center mb-4">User Information</h2>
         <div id="profileData">
-          <div class="info-item">
-            <span class="label">Full Name</span>
-            <span class="value" id="fullname"></span>
-          </div>
-          <div class="info-item">
-            <span class="label">Username</span>
-            <span class="value" id="username"></span>
-          </div>
-          <div class="info-item">
-            <span class="label">Email</span>
-            <span class="value" id="email"></span>
-          </div>
-          <div class="info-item">
-            <span class="label">Mobile Number</span>
-            <span class="value" id="mobile"></span>
-          </div>
-          <div class="info-item">
-            <span class="label">Campus</span>
-            <span class="value" id="campus"></span>
-          </div>
+          <div class="info-item"><span class="label">Full Name</span><span class="value" id="fullname">Loading...</span></div>
+          <div class="info-item"><span class="label">Username</span><span class="value" id="username">Loading...</span></div>
+          <div class="info-item"><span class="label">Email</span><span class="value" id="email">Loading...</span></div>
+          <div class="info-item"><span class="label">Mobile Number</span><span class="value" id="mobile">Loading...</span></div>
+          <div class="info-item"><span class="label">Campus</span><span class="value" id="campus">Loading...</span></div>
         </div>
       </div>
     </div>
   </div>
 </div>
 
+<!-- ONLY THIS SCRIPT — NO admin.js, NO DUPLICATES -->
 <script type="module">
-  // CORRECT PATH FOR FILES INSIDE Admin/ folder
-  import { auth, db } from '../Public/JS/firebase.js';
-  import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
-  import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js";
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
+  import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
+  import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js";
 
-  // Show loading state
-  document.querySelectorAll('#fullname, #username, #email, #mobile, #campus').forEach(el => {
-    el.textContent = "Loading...";
-  });
+  const firebaseConfig = {
+    apiKey: "AIzaSyA-z0wjbC9xRWR5Ih_qyPHNSA2RaSMgPjk",
+    authDomain: "edutrack-53c83.firebaseapp.com",
+    projectId: "edutrack-53c83",
+    storageBucket: "edutrack-53c83.firebasestorage.app",
+    messagingSenderId: "1063309648434",
+    appId: "1:1063309648434:web:ec41f5a8d3b65988a6122b"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
 
   onAuthStateChanged(auth, async (user) => {
     if (!user) {
@@ -100,40 +82,31 @@
       return;
     }
 
-    // Update top-right username
     document.getElementById("userDisplay").textContent = user.email.split("@")[0];
 
     try {
-      const docRef = doc(db, "users", user.uid);
-      const docSnap = await getDoc(docRef);
-
-      if (docSnap.exists()) {
-        const data = docSnap.data();
-        document.getElementById("fullname").textContent = data.fullname || "Not set";
-        document.getElementById("username").textContent = data.username || "Not set";
-        document.getElementById("email").textContent = data.email || user.email;
-        document.getElementById("mobile").textContent = data.mobile || "Not set";
-        document.getElementById("campus").textContent = data.campus || "Not set";
+      const snap = await getDoc(doc(db, "users", user.uid));
+      if (snap.exists()) {
+        const d = snap.data();
+        document.getElementById("fullname").textContent = d.fullname;
+        document.getElementById("username").textContent = d.username;
+        document.getElementById("email").textContent = d.email;
+        document.getElementById("mobile").textContent = d.mobile || "—";
+        document.getElementById("campus").textContent = d.campus;
       } else {
-        document.getElementById("profileData").innerHTML = 
-          `<div class="text-center text-danger p-4">No profile found. Please re-register.</div>`;
+        document.getElementById("profileData").innerHTML = "<p class='text-danger text-center'>Profile not found!</p>";
       }
-    } catch (error) {
-      console.error("Error loading profile:", error);
-      document.getElementById("profileData").innerHTML = 
-        `<div class="text-center text-danger p-4">Failed to load profile.<br>${error.message}</div>`;
+    } catch (e) {
+      console.error(e);
+      document.getElementById("profileData").innerHTML = "<p class='text-danger text-center'>Error loading profile</p>";
     }
   });
 
-  // Logout button
-  document.getElementById("logoutBtn")?.addEventListener("click", () => {
-    auth.signOut().then(() => {
-      window.location.href = "../Public/login.html";
-    });
+  document.getElementById("logoutBtn").addEventListener("click", () => {
+    signOut(auth).then(() => window.location.href = "../Public/login.html");
   });
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-<script type="module" src="JS/admin.js"></script>
 </body>
 </html>
