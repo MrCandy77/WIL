@@ -40,7 +40,7 @@
       <li class="nav-item"><a href="info.html" class="nav-link active"><i class="bi bi-person-vcard me-2"></i>Profile Info</a></li>
     </ul>
     <div class="logout-section text-center mt-auto mb-3">
-      <button id="logoutBtn" class="btn btn-outline-light w-75">Logout</button>
+      <button id="logoutBtn" class="btn btn-outline-light w-75 text-light">Logout</button>
     </div>
   </nav>
 
@@ -84,43 +84,48 @@
 </div>
 
 <script type="module">
+  // CORRECT PATH FOR FILES INSIDE Admin/ folder
   import { auth, db } from '../Public/JS/firebase.js';
   import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
   import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js";
 
-  document.addEventListener("DOMContentLoaded", () => {
-    onAuthStateChanged(auth, async (user) => {
-      if (!user) {
-        window.location.href = "../Public/login.html";
-        return;
-      }
-
-      const userDisplay = document.getElementById("userDisplay");
-      if (userDisplay) userDisplay.textContent = user.email.split("@")[0];
-
-      try {
-        const docRef = doc(db, "users", user.uid);
-        const docSnap = await getDoc(docRef);
-
-        if (docSnap.exists()) {
-          const data = docSnap.data();
-          document.getElementById("fullname").textContent = data.fullname || "Not set";
-          document.getElementById("username").textContent = data.username || "Not set";
-          document.getElementById("email").textContent = data.email || user.email;
-          document.getElementById("mobile").textContent = data.mobile || "Not set";
-          document.getElementById("campus").textContent = data.campus || "Not set";
-        } else {
-          document.getElementById("profileData").innerHTML = 
-            `<div class="text-center text-danger">Profile not found. Please re-register.</div>`;
-        }
-      } catch (error) {
-        console.error("Error:", error);
-        document.getElementById("profileData").innerHTML = 
-          `<div class="text-center text-danger">Failed to load profile.</div>`;
-      }
-    });
+  // Show loading state
+  document.querySelectorAll('#fullname, #username, #email, #mobile, #campus').forEach(el => {
+    el.textContent = "Loading...";
   });
 
+  onAuthStateChanged(auth, async (user) => {
+    if (!user) {
+      window.location.href = "../Public/login.html";
+      return;
+    }
+
+    // Update top-right username
+    document.getElementById("userDisplay").textContent = user.email.split("@")[0];
+
+    try {
+      const docRef = doc(db, "users", user.uid);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        const data = docSnap.data();
+        document.getElementById("fullname").textContent = data.fullname || "Not set";
+        document.getElementById("username").textContent = data.username || "Not set";
+        document.getElementById("email").textContent = data.email || user.email;
+        document.getElementById("mobile").textContent = data.mobile || "Not set";
+        document.getElementById("campus").textContent = data.campus || "Not set";
+      } else {
+        document.getElementById("profileData").innerHTML = 
+          `<div class="text-center text-danger p-4">No profile found. Please re-register.</div>`;
+      }
+    } catch (error) {
+      console.error("Error loading profile:", error);
+      document.getElementById("profileData").innerHTML = 
+        `<div class="text-center text-danger p-4">Failed to load profile.<br>${error.message}</div>`;
+    }
+  });
+
+  // Logout button
   document.getElementById("logoutBtn")?.addEventListener("click", () => {
     auth.signOut().then(() => {
       window.location.href = "../Public/login.html";
